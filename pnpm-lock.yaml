@@ -16,16 +16,22 @@ specifiers:
   eslint-plugin-prettier: 4.2.1
   husky: 8.0.2
   lint-staged: 13.1.0
+  merge-refs: 1.1.0
   next: 13.1.0
   prettier: 2.8.1
   react: 18.2.0
   react-dom: 18.2.0
   typescript: 4.9.4
+  wavesurfer-react: 2.2.2
+  wavesurfer.js: 6.4.0
 
 dependencies:
+  merge-refs: 1.1.0
   next: 13.1.0_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  wavesurfer-react: 2.2.2_wavesurfer.js@6.4.0
+  wavesurfer.js: 6.4.0
 
 devDependencies:
   '@commitlint/cli': 17.3.0
@@ -528,7 +534,6 @@ packages:
 
   /@types/prop-types/15.7.5:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
-    dev: true
 
   /@types/react-dom/18.0.9:
     resolution: {integrity: sha512-qnVvHxASt/H7i+XG1U1xMiY5t+IHcPGUK7TDMDzom08xa7e86eCeKOiLZezwCKVxJn6NEiiy2ekgX8aQssjIKg==}
@@ -542,11 +547,9 @@ packages:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.2
       csstype: 3.1.0
-    dev: true
 
   /@types/scheduler/0.16.2:
     resolution: {integrity: sha512-hppQEBDmlwhFAXKJX2KnWLYu5yMfi91yazPb2l+lbJiwW+wdo1gNeRA+3RgNSO39WYX2euey41KEwnqesU2Jew==}
-    dev: true
 
   /@types/semver/7.3.12:
     resolution: {integrity: sha512-WwA1MW0++RfXmCr12xeYOOC5baSC9mSb0ZqCquFzKhcoF4TvHu5MKOuXsncgZcpVFhB1pXd5hZmM0ryAoCp12A==}
@@ -1071,7 +1074,6 @@ packages:
 
   /csstype/3.1.0:
     resolution: {integrity: sha512-uX1KG+x9h5hIJsaKR9xHUeUraxf8IODOwq9JLNPq6BwB04a/xgpq3rcx47l5BZu5zBPlgD342tdke3Hom/nJRA==}
-    dev: true
 
   /damerau-levenshtein/1.0.8:
     resolution: {integrity: sha512-sdQSFB7+llfUcQHUQO3+B8ERRj0Oa4w9POWMI/puGtuf7gFywGmkaLCElnudfTiKZV+NvHqL0ifzdrI8Ro7ESA==}
@@ -2380,6 +2382,12 @@ packages:
       yargs-parser: 20.2.9
     dev: true
 
+  /merge-refs/1.1.0:
+    resolution: {integrity: sha512-5f0EKS2NOmk+SGtt9jsd7Bdloe+c7//PIf2qnFBx37FoxLrKJHLMvgnfZhbkYzLtXRUTj8H6FZfvbkoYhz5rLw==}
+    dependencies:
+      '@types/react': 18.0.26
+    dev: false
+
   /merge-stream/2.0.0:
     resolution: {integrity: sha512-abv/qOcuPfk3URPfDzmZU1LKmuw8kT+0nIHvKrKgFrwifol/doWcdA4ZqsWQ8ENrFKkd67Mfpo/LovbIUsbt3w==}
     dev: true
@@ -3408,6 +3416,18 @@ packages:
       spdx-correct: 3.1.1
       spdx-expression-parse: 3.0.1
     dev: true
+
+  /wavesurfer-react/2.2.2_wavesurfer.js@6.4.0:
+    resolution: {integrity: sha512-3w98DzGjZxMYFrP0syvyk1YYifFVLqhjtfUgJpygezSWPVXq0XTFKHlkNZrpJ8iLAtahpFb7CIeL60HYdw91MA==}
+    peerDependencies:
+      wavesurfer.js: ^4.0.0 || ^5.0.0 || ^6.0.0
+    dependencies:
+      wavesurfer.js: 6.4.0
+    dev: false
+
+  /wavesurfer.js/6.4.0:
+    resolution: {integrity: sha512-+i9GkYdMTm998goOWvycWqCgxfbolnuGTPgrdGss7ZbQDuu+n6AHdnJwYnqxW8RZo5A2ck6ztzXbrXGuCi0m5g==}
+    dev: false
 
   /which-boxed-primitive/1.0.2:
     resolution: {integrity: sha512-bwZdv0AKLpplFY2KZRX6TvyuN7ojjr7lwkg6ml0roIy9YeuSr7JS372qlNW18UQYzgYK9ziGcerWqZOmEn9VNg==}
