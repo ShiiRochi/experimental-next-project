@@ -1,9 +1,54 @@
+import React, { cloneElement, ForwardedRef, forwardRef, useRef } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 
+import dynamic from 'next/dynamic';
+
 import styles from '@/styles/Home.module.css';
+import useForceUpdate from '@/shared/useForceUpdate';
+import mergeRefs from 'merge-refs';
+
+const Wavesurfer = dynamic(() => import(`@/shared/wavesurfer-react/dynamic`), {
+  ssr: false,
+});
+
+const Form = forwardRef(
+  (props: { children: JSX.Element }, ref: ForwardedRef<HTMLFormElement>) => {
+    return (
+      <form className="ui form" ref={ref}>
+        {props.children}
+      </form>
+    );
+  },
+);
+
+Form.displayName = `ForwardRef(Form)`;
+
+const Suspender = ({ children }: { children: JSX.Element }) => {
+  const ref$ = useRef(null);
+
+  // const arr = Children.toArray(children);
+  //
+  // console.log({ ref$ });
+  //
+  // return cloneElement(children, {
+  //   ref: mergeRefs(ref$, arr[0].ref),
+  // });
+
+  // OR
+  // There should be only one child to make it working
+  return cloneElement(children, {
+    ref: mergeRefs(ref$, children.ref),
+  });
+};
 
 export default function Home() {
+  const forceUpdate = useForceUpdate();
+
+  const form$ = useRef(null);
+
+  console.log({ form$ });
+
   return (
     <div className={styles.container}>
       <Head>
@@ -16,43 +61,17 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+        {/*<div>
+          <Suspender>
+            <Form ref={form$}>
+              <div className="ui field">simple field</div>
+            </Form>
+          </Suspender>
+          <button onClick={forceUpdate}>rerender</button>
+        </div>*/}
 
-        <p className={styles.description}>
-          Get started by editing{` `}
-          <code className={styles.code}>src/pages/index.tsx</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=typescript-nextjs-starter"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+        <div className={styles.wsPlayer}>
+          <Wavesurfer id="superior" />
         </div>
       </main>
 
